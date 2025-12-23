@@ -143,7 +143,7 @@ const colorTable = [
     ['H3', '#ccc6d0'],
     ['H4', '#989192'],
     ['H5', '#646263'],
-    ['H6', '#3b383c'],
+    ['H6', '#383639'],
     ['H7', '#000000'],
     ['H8', '#f9e5ee'],
     ['H9', '#e7e4db'],
@@ -199,34 +199,7 @@ const TOP_K = 5;
    2. 보유 색상 렌더링
 ===================================== */
 window.onload = function () {
-    const container = document.getElementById('myColors');
-    container.innerHTML = '';
-
-    let currentGroup = '';
-    let rowDiv = null;
-
-    colorList.forEach((c) => {
-        const alpha = c.name.match(/^([A-Z]+)/)[1];
-
-        if (alpha !== currentGroup) {
-            currentGroup = alpha;
-            rowDiv = document.createElement('div');
-            rowDiv.className = 'color-row';
-            container.appendChild(rowDiv);
-        }
-
-        const item = document.createElement('div');
-        item.className = 'owned-color-item';
-        item.style.backgroundColor = c.hex;
-
-        const label = document.createElement('div');
-        label.className = 'owned-color-label';
-        label.innerText = c.name;
-        label.style.color = getTextColor(c.rgb);
-
-        item.appendChild(label);
-        rowDiv.appendChild(item);
-    });
+    renderOwnedColors('name');
 };
 
 /* =====================================
@@ -310,6 +283,54 @@ function renderExtractedColors(colors) {
         container.appendChild(wrapper);
     });
 }
+
+function renderOwnedColors(mode = 'name') {
+    const container = document.getElementById('myColors');
+    container.innerHTML = '';
+
+    let sorted;
+
+    if (mode === 'palette') {
+        sorted = [...colorList].sort(
+            (a, b) => rgbToHue(a.rgb) - rgbToHue(b.rgb)
+        );
+    } else {
+        sorted = [...colorList].sort(compareColorName);
+    }
+
+    let currentGroup = '';
+    let rowDiv = null;
+
+    sorted.forEach((c) => {
+        const alpha = c.name.match(/^([A-Z]+)/)[1];
+
+        if (mode === 'name' && alpha !== currentGroup) {
+            currentGroup = alpha;
+            rowDiv = document.createElement('div');
+            rowDiv.className = 'color-row';
+            container.appendChild(rowDiv);
+        }
+
+        if (mode === 'palette' && !rowDiv) {
+            rowDiv = document.createElement('div');
+            rowDiv.className = 'color-row';
+            container.appendChild(rowDiv);
+        }
+
+        const item = document.createElement('div');
+        item.className = 'owned-color-item';
+        item.style.backgroundColor = c.hex;
+
+        const label = document.createElement('div');
+        label.className = 'owned-color-label';
+        label.innerText = c.name;
+        label.style.color = getTextColor(c.rgb);
+
+        item.appendChild(label);
+        rowDiv.appendChild(item);
+    });
+}
+
 
 /* =====================================
    5. 가장 가까운 보유 색상 찾기

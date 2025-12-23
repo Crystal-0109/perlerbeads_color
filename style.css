@@ -97,4 +97,15 @@ canvas {
     height: 50px;
 }
 
+/* ================================
+   정렬 버튼
+================================ */
+.sort-buttons {
+    margin-bottom: 12px;
+}
 
+.sort-buttons button {
+    margin-right: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
