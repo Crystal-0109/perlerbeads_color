@@ -54,8 +54,24 @@ body {
     margin-top: 30px;
 }
 
-canvas {
-    display: none;
+/* ================================
+   [수정] 캔버스 및 업로드 레이아웃
+================================ */
+/* 기존의 canvas { display: none; } 은 삭제하거나 아래 코드로 대체하세요. */
+
+.upload-container {
+    display: flex;       /* 요소를 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 20px;           /* 버튼과 이미지 사이 간격 */
+    margin-top: 10px;
+}
+
+#canvas {
+    display: none;       /* 기본적으로는 숨김 (JS에서 활성화) */
+    max-height: 150px;   /* 미리보기 높이 제한 (너무 크지 않게) */
+    width: auto;         /* 비율 유지 */
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 
 /* ================================
