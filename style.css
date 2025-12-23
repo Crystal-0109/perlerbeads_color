@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+/* ================================
+   보유 색상 (절반 크기)
+================================ */
+.owned-color-item {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 4px;
+    border: 1px solid #000;
+}
+
+.owned-color-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 10px;
+    pointer-events: none;
+}
+
+/* ================================
+   이미지 추출 색상 (기존 크기)
+================================ */
+.color-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    margin: 6px;
+    border: 1px solid #000;
+}
+
+.color-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.palette {
+    margin-top: 10px;
+}
+
+.section {
+    margin-top: 30px;
+}
+
+canvas {
+    display: none;
+}
+
+/* ================================
+   보유 색상 행 단위 정렬
+================================ */
+.color-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+/* ================================
+   추천 색상 비교 카드
+================================ */
+.compare-item {
+    display: inline-block;
+    margin: 6px;
+    border: 1px solid #000;
+}
+
+.recommend-color {
+    width: 80px;
+    height: 30px;
+    position: relative;
+}
+
+.recommend-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.extracted-color {
+    width: 80px;
+    height: 50px;
+}
+
+

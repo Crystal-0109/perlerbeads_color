@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>마인크래프트 색상 추출 및 추천</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>보유 색상 리스트</h2>
+    <div id="myColors"></div>
+
+    <div class="section">
+        <h2>이미지 업로드 (마인크래프트 아이템)</h2>
+        <input type="file" accept="image/*" onchange="loadImage(event)">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="section">
+        <h2>이미지에서 추출된 모든 색상</h2>
+        <div id="extractedColors" class="palette"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
