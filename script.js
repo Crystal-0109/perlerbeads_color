@@ -4,38 +4,159 @@
    - colorList: 이름 정렬 및 RGB 변환된 객체 배열
 ========================================================================== */
 const colorTable = [
-    ['A1', '#fbf5e7'], ['A2', '#f2f7ce'], ['A3', '#fff1b4'], ['A4', '#fff754'], ['A5', '#ffea37'],
-    ['A6', '#ffc63a'], ['A7', '#fe8441'], ['A8', '#e3c62a'], ['A9', '#fcab73'], ['A10', '#ff9141'],
-    ['A11', '#fed68e'], ['A12', '#fcbd9c'], ['A13', '#ffd350'], ['A14', '#f26b33'], ['A15', '#fbfe3f'],
-    ['A16', '#fbfec5'], ['A17', '#fbe47b'], ['A18', '#fccf93'], ['A19', '#ff8d8c'],
-    ['B1', '#e9f04a'], ['B2', '#b5ec47'], ['B3', '#98f4ac'], ['B4', '#53fa48'], ['B5', '#71d364'],
-    ['B6', '#7ce9c4'], ['B7', '#3cb690'], ['B8', '#14904b'], ['B9', '#26513a'], ['B10', '#ade0d5'],
-    ['B11', '#64771e'], ['B12', '#1f705a'], ['B13', '#defbaf'], ['B14', '#cdef38'], ['B15', '#2a4c33'],
-    ['B16', '#dcf6b7'], ['B17', '#a4b026'], ['B18', '#e2fc5b'], ['B19', '#5bd0b6'], ['B20', '#e6fce5'], ['B24', '#effcb6'],
-    ['C1', '#f0fef1'], ['C2', '#d2f9f5'], ['C3', '#b1f2fe'], ['C4', '#67dcfe'], ['C5', '#21bbe1'],
-    ['C6', '#7cbdf2'], ['C7', '#378ae5'], ['C8', '#176ec1'], ['C10', '#5acef7'], ['C11', '#44d5dc'],
-    ['C12', '#1e3e6a'], ['C13', '#cfecfe'], ['C14', '#eafdfb'], ['C15', '#30e0e9'], ['C16', '#095493'],
-    ['C17', '#7ae7f4'], ['C19', '#2496b9'], ['C20', '#197bc0'], ['C21', '#e0eef7'],
-    ['D1', '#b8ceff'], ['D2', '#9ca8da'], ['D3', '#224bb4'], ['D4', '#2e4770'], ['D5', '#c672b6'],
-    ['D6', '#a69ee3'], ['D7', '#8c6fc2'], ['D8', '#e1d9fe'], ['D9', '#d5c6fd'], ['D10', '#341c4e'],
-    ['D11', '#c3d8ff'], ['D12', '#dbb2e9'], ['D13', '#c44ead'], ['D14', '#8432a2'], ['D15', '#49287f'],
-    ['D16', '#e5eafe'], ['D17', '#c8d5fc'], ['D18', '#b691c7'], ['D19', '#e5cbf6'], ['D20', '#a654cf'],
-    ['D21', '#89329b'], ['D22', '#594c94'], ['D23', '#f2e4fd'],
-    ['E1', '#fed3cc'], ['E2', '#f9d7ed'], ['E3', '#f9a0cd'], ['E4', '#ee78ad'], ['E5', '#f851a7'],
-    ['E6', '#f72f7d'], ['E7', '#9f1571'], ['E8', '#fbe1ea'], ['E9', '#e98dd6'], ['E10', '#c23976'],
-    ['E11', '#fcede8'], ['E12', '#fdb1d7'], ['E13', '#ab1286'], ['E14', '#fed2c1'], ['E15', '#ead4d6'],
-    ['E16', '#fff2f1'], ['E17', '#fce9f4'], ['E18', '#fad5e6'], ['E19', '#f7d2f2'],
-    ['F1', '#fca39b'], ['F2', '#f86a64'], ['F3', '#eb4a56'], ['F4', '#fc0d28'], ['F5', '#e7202a'],
-    ['F6', '#b83d34'], ['F7', '#8e213b'], ['F8', '#b80930'], ['F9', '#e7708c'], ['F10', '#9c4c30'],
-    ['F11', '#703128'], ['F12', '#fd435a'], ['F13', '#cf4d31'], ['F14', '#fbadad'], ['F16', '#fbdddc'],
-    ['G1', '#ffe6c7'], ['G2', '#fdccb9'], ['G3', '#f4c3b3'], ['G4', '#e2b2a0'], ['G5', '#f5a671'],
-    ['G6', '#ef966a'], ['G7', '#905537'], ['G8', '#4b251c'], ['G9', '#eebc82'], ['G10', '#cb9231'],
-    ['G11', '#e6c798'], ['G12', '#deb083'], ['G13', '#d68f57'], ['G14', '#8e6350'], ['G15', '#f1f3db'],
-    ['G16', '#f5dcd0'], ['G17', '#6d574c'], ['G18', '#feecd8'], ['G19', '#eaa452'], ['G20', '#b26540'],
-    ['H1(투명)', '#faf9fe'], ['H2', '#ffffff'], ['H3', '#ccc6d0'], ['H4', '#989192'], ['H5', '#646263'],
-    ['H6', '#383639'], ['H7', '#000000'], ['H8', '#f9e5ee'], ['H9', '#e7e4db'], ['H10', '#e5e5f1'],
-    ['H11', '#cccccc'], ['H12', '#fcf8ec'], ['H13', '#f0decd'], ['H14', '#d8dde3'], ['H15', '#99a8c2'],
-    ['H17', '#f8f2f4'], ['H19', '#f4ece2'],
+    ['A1', '#fbf5e7'],
+    ['A2', '#f2f7ce'],
+    ['A3', '#fff1b4'],
+    ['A4', '#fff754'],
+    ['A5', '#ffea37'],
+    ['A6', '#ffc63a'],
+    ['A7', '#fe8441'],
+    ['A8', '#e3c62a'],
+    ['A9', '#fcab73'],
+    ['A10', '#ff9141'],
+    ['A11', '#fed68e'],
+    ['A12', '#fcbd9c'],
+    ['A13', '#ffd350'],
+    ['A14', '#f26b33'],
+    ['A15', '#fbfe3f'],
+    ['A16', '#fbfec5'],
+    ['A17', '#fbe47b'],
+    ['A18', '#fccf93'],
+    ['A19', '#ff8d8c'],
+    ['B1', '#e9f04a'],
+    ['B2', '#b5ec47'],
+    ['B3', '#98f4ac'],
+    ['B4', '#53fa48'],
+    ['B5', '#71d364'],
+    ['B6', '#7ce9c4'],
+    ['B7', '#3cb690'],
+    ['B8', '#14904b'],
+    ['B9', '#26513a'],
+    ['B10', '#ade0d5'],
+    ['B11', '#64771e'],
+    ['B12', '#1f705a'],
+    ['B13', '#defbaf'],
+    ['B14', '#cdef38'],
+    ['B15', '#2a4c33'],
+    ['B16', '#dcf6b7'],
+    ['B17', '#a4b026'],
+    ['B18', '#e2fc5b'],
+    ['B19', '#5bd0b6'],
+    ['B20', '#e6fce5'],
+    ['B24', '#effcb6'],
+    ['C1', '#f0fef1'],
+    ['C2', '#d2f9f5'],
+    ['C3', '#b1f2fe'],
+    ['C4', '#67dcfe'],
+    ['C5', '#21bbe1'],
+    ['C6', '#7cbdf2'],
+    ['C7', '#378ae5'],
+    ['C8', '#176ec1'],
+    ['C10', '#5acef7'],
+    ['C11', '#44d5dc'],
+    ['C12', '#1e3e6a'],
+    ['C13', '#cfecfe'],
+    ['C14', '#eafdfb'],
+    ['C15', '#30e0e9'],
+    ['C16', '#095493'],
+    ['C17', '#7ae7f4'],
+    ['C19', '#2496b9'],
+    ['C20', '#197bc0'],
+    ['C21', '#e0eef7'],
+    ['D1', '#b8ceff'],
+    ['D2', '#9ca8da'],
+    ['D3', '#224bb4'],
+    ['D4', '#2e4770'],
+    ['D5', '#c672b6'],
+    ['D6', '#a69ee3'],
+    ['D7', '#8c6fc2'],
+    ['D8', '#e1d9fe'],
+    ['D9', '#d5c6fd'],
+    ['D10', '#341c4e'],
+    ['D11', '#c3d8ff'],
+    ['D12', '#dbb2e9'],
+    ['D13', '#c44ead'],
+    ['D14', '#8432a2'],
+    ['D15', '#49287f'],
+    ['D16', '#e5eafe'],
+    ['D17', '#c8d5fc'],
+    ['D18', '#b691c7'],
+    ['D19', '#e5cbf6'],
+    ['D20', '#a654cf'],
+    ['D21', '#89329b'],
+    ['D22', '#594c94'],
+    ['D23', '#f2e4fd'],
+    ['E1', '#fed3cc'],
+    ['E2', '#f9d7ed'],
+    ['E3', '#f9a0cd'],
+    ['E4', '#ee78ad'],
+    ['E5', '#f851a7'],
+    ['E6', '#f72f7d'],
+    ['E7', '#9f1571'],
+    ['E8', '#fbe1ea'],
+    ['E9', '#e98dd6'],
+    ['E10', '#c23976'],
+    ['E11', '#fcede8'],
+    ['E12', '#fdb1d7'],
+    ['E13', '#ab1286'],
+    ['E14', '#fed2c1'],
+    ['E15', '#ead4d6'],
+    ['E16', '#fff2f1'],
+    ['E17', '#fce9f4'],
+    ['E18', '#fad5e6'],
+    ['E19', '#f7d2f2'],
+    ['F1', '#fca39b'],
+    ['F2', '#f86a64'],
+    ['F3', '#eb4a56'],
+    ['F4', '#fc0d28'],
+    ['F5', '#e7202a'],
+    ['F6', '#b83d34'],
+    ['F7', '#8e213b'],
+    ['F8', '#b80930'],
+    ['F9', '#e7708c'],
+    ['F10', '#9c4c30'],
+    ['F11', '#703128'],
+    ['F12', '#fd435a'],
+    ['F13', '#cf4d31'],
+    ['F14', '#fbadad'],
+    ['F16', '#fbdddc'],
+    ['G1', '#ffe6c7'],
+    ['G2', '#fdccb9'],
+    ['G3', '#f4c3b3'],
+    ['G4', '#e2b2a0'],
+    ['G5', '#f5a671'],
+    ['G6', '#ef966a'],
+    ['G7', '#905537'],
+    ['G8', '#4b251c'],
+    ['G9', '#eebc82'],
+    ['G10', '#cb9231'],
+    ['G11', '#e6c798'],
+    ['G12', '#deb083'],
+    ['G13', '#d68f57'],
+    ['G14', '#8e6350'],
+    ['G15', '#f1f3db'],
+    ['G16', '#f5dcd0'],
+    ['G17', '#6d574c'],
+    ['G18', '#feecd8'],
+    ['G19', '#eaa452'],
+    ['G20', '#b26540'],
+    ['H1(투명)', '#faf9fe'],
+    ['H2', '#ffffff'],
+    ['H3', '#ccc6d0'],
+    ['H4', '#989192'],
+    ['H5', '#646263'],
+    ['H6', '#383639'],
+    ['H7', '#000000'],
+    ['H8', '#f9e5ee'],
+    ['H9', '#e7e4db'],
+    ['H10', '#e5e5f1'],
+    ['H11', '#cccccc'],
+    ['H12', '#fcf8ec'],
+    ['H13', '#f0decd'],
+    ['H14', '#d8dde3'],
+    ['H15', '#99a8c2'],
+    ['H17', '#f8f2f4'],
+    ['H19', '#f4ece2'],
 ];
 
 // 이름 정렬 함수 (A1, A2 ... A10 순서 보정)
@@ -69,7 +190,6 @@ const colorList = colorTable
     }))
     .sort(compareColorName);
 
-
 /* ==========================================================================
    2. 이벤트 리스너 및 메인 실행
 ========================================================================== */
@@ -85,7 +205,7 @@ function loadImage(event) {
 
         // [추가된 코드] 캔버스를 화면에 표시
         canvas.style.display = 'block';
-        
+
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0);
@@ -109,7 +229,6 @@ function loadImage(event) {
     img.src = URL.createObjectURL(event.target.files[0]);
 }
 
-
 /* ==========================================================================
    3. 화면 렌더링 함수
 ========================================================================== */
@@ -119,9 +238,10 @@ function renderOwnedColors(mode = 'name') {
     const container = document.getElementById('myColors');
     container.innerHTML = '';
 
-    const sorted = mode === 'palette' 
-        ? [...colorList].sort(sortByRGB) 
-        : [...colorList].sort(compareColorName);
+    const sorted =
+        mode === 'palette'
+            ? [...colorList].sort(sortByRGB)
+            : [...colorList].sort(compareColorName);
 
     let currentGroup = '';
     let rowDiv = null;
@@ -157,7 +277,9 @@ function renderOwnedColors(mode = 'name') {
     });
 }
 
-// 추출된 색상 매칭 결과 표시
+/* ==========================================================================
+   [수정] 화면 렌더링 함수 - 추출된 색상 매칭 결과 표시
+========================================================================== */
 function renderExtractedColors(colors) {
     const container = document.getElementById('extractedColors');
     container.innerHTML = '';
@@ -165,15 +287,34 @@ function renderExtractedColors(colors) {
     // [핵심] 1:1 중복 없는 전체 매칭 실행
     const matchedResults = matchColorsGlobally(colors);
 
-    colors.forEach((color, index) => {
-        const bestMatch = matchedResults[index];
+    // 1. [추가] 정렬을 위해 추출된 색상과 매칭된 결과를 하나의 객체로 묶음
+    const combinedList = colors.map((color, index) => ({
+        extracted: color,
+        recommended: matchedResults[index],
+    }));
+
+    // 2. [추가] 추천된 색상의 이름순(A1, A2...)으로 정렬
+    // compareColorName 함수는 파일 상단에 이미 정의되어 있습니다.
+    combinedList.sort((a, b) => {
+        if (!a.recommended && !b.recommended) return 0;
+        if (!a.recommended) return 1; // 매칭 실패한 건 뒤로
+        if (!b.recommended) return -1;
+
+        return compareColorName(a.recommended, b.recommended);
+    });
+
+    // 3. 정렬된 리스트를 순회하며 렌더링
+    combinedList.forEach((item) => {
+        const bestMatch = item.recommended;
+        const color = item.extracted; // (정렬된 순서에 맞는) 원본 추출 색상
+
         const wrapper = document.createElement('div');
         wrapper.className = 'compare-item';
 
         // 1. 추천 색상 (보유 블록)
         const recommend = document.createElement('div');
         recommend.className = 'recommend-color';
-        
+
         if (bestMatch) {
             recommend.style.backgroundColor = bestMatch.hex;
             const recommendLabel = document.createElement('div');
@@ -197,7 +338,6 @@ function renderExtractedColors(colors) {
     });
 }
 
-
 /* ==========================================================================
    4. 핵심 알고리즘: 1:1 매칭 & 색조 보정
 ========================================================================== */
@@ -213,7 +353,7 @@ function matchColorsGlobally(extractedColors) {
         colorList.forEach((oc, oi) => {
             const ocLab = rgbToLab(oc.rgb);
             const ocChroma = labChroma(ocLab);
-            
+
             // 기본 점수: DeltaE 2000 (작을수록 비슷함)
             let finalScore = deltaE2000(ecLab, ocLab);
 
@@ -222,18 +362,21 @@ function matchColorsGlobally(extractedColors) {
 
             if (!isEcGrayscale && !isOcGrayscale) {
                 const hueDiff = hueDistance(ecHue, rgbToHue(oc.rgb));
-                
+
                 // Hue 차이가 25도 이상이면 벌점
                 if (hueDiff > 25) finalScore += hueDiff * 2;
                 // Hue 차이가 45도 이상이면 강력한 벌점 (완전 다른 색)
                 if (hueDiff > 45) finalScore += 500;
-            } 
-            else if (isEcGrayscale !== isOcGrayscale) {
+            } else if (isEcGrayscale !== isOcGrayscale) {
                 // 무채색과 유채색 매칭 페널티
                 finalScore += 50;
             }
 
-            pairs.push({ extractedIndex: ei, ownedIndex: oi, score: finalScore });
+            pairs.push({
+                extractedIndex: ei,
+                ownedIndex: oi,
+                score: finalScore,
+            });
         });
     });
 
@@ -246,7 +389,10 @@ function matchColorsGlobally(extractedColors) {
     const result = new Array(extractedColors.length).fill(null);
 
     for (const p of pairs) {
-        if (!matchedExtracted.has(p.extractedIndex) && !matchedOwned.has(p.ownedIndex)) {
+        if (
+            !matchedExtracted.has(p.extractedIndex) &&
+            !matchedOwned.has(p.ownedIndex)
+        ) {
             matchedExtracted.add(p.extractedIndex);
             matchedOwned.add(p.ownedIndex);
             result[p.extractedIndex] = colorList[p.ownedIndex];
@@ -268,7 +414,6 @@ function matchColorsGlobally(extractedColors) {
     return result;
 }
 
-
 /* ==========================================================================
    5. 색상 변환 및 계산 유틸리티
 ========================================================================== */
@@ -278,16 +423,25 @@ function hexToRgb(hex) {
 }
 
 function rgbToHue({ r, g, b }) {
-    r /= 255; g /= 255; b /= 255;
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
     const d = max - min;
     if (d === 0) return 0;
-    
+
     let h;
     switch (max) {
-        case r: h = ((g - b) / d) % 6; break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
+        case r:
+            h = ((g - b) / d) % 6;
+            break;
+        case g:
+            h = (b - r) / d + 2;
+            break;
+        case b:
+            h = (r - g) / d + 4;
+            break;
     }
     return (h * 60 + 360) % 360;
 }
@@ -300,7 +454,9 @@ function hueDistance(h1, h2) {
 function rgbToLab(rgb) {
     // RGB -> XYZ
     let { r, g, b } = rgb;
-    r /= 255; g /= 255; b /= 255;
+    r /= 255;
+    g /= 255;
+    b /= 255;
     r = r > 0.04045 ? Math.pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
     g = g > 0.04045 ? Math.pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
     b = b > 0.04045 ? Math.pow((b + 0.055) / 1.055, 2.4) : b / 12.92;
@@ -310,10 +466,18 @@ function rgbToLab(rgb) {
     let z = r * 0.0193 + g * 0.1192 + b * 0.9505;
 
     // XYZ -> Lab
-    const refX = 0.95047, refY = 1.0, refZ = 1.08883;
-    x /= refX; y /= refY; z /= refZ;
+    const refX = 0.95047,
+        refY = 1.0,
+        refZ = 1.08883;
+    x /= refX;
+    y /= refY;
+    z /= refZ;
     const f = (t) => (t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116);
-    return { L: 116 * f(y) - 16, a: 500 * (f(x) - f(y)), b: 200 * (f(y) - f(z)) };
+    return {
+        L: 116 * f(y) - 16,
+        a: 500 * (f(x) - f(y)),
+        b: 200 * (f(y) - f(z)),
+    };
 }
 
 function labChroma(lab) {
@@ -337,7 +501,8 @@ function deltaE2000(lab1, lab2) {
     let dhp = h2p - h1p;
     if (Math.abs(dhp) > Math.PI) dhp += dhp > 0 ? -2 * Math.PI : 2 * Math.PI;
     const dHp = 2 * Math.sqrt(c1p * c2p) * Math.sin(dhp / 2);
-    const SL = 1 + (0.015 * (avgL - 50) ** 2) / Math.sqrt(20 + (avgL - 50) ** 2);
+    const SL =
+        1 + (0.015 * (avgL - 50) ** 2) / Math.sqrt(20 + (avgL - 50) ** 2);
     const SC = 1 + 0.045 * avgC;
     const SH = 1 + 0.015 * avgC;
     return Math.sqrt((dLp / SL) ** 2 + (dCp / SC) ** 2 + (dHp / SH) ** 2);
