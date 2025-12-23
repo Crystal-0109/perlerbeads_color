@@ -274,8 +274,7 @@ function renderExtractedColors(colors) {
         /* 추출된 실제 색상 (아래) */
         const extracted = document.createElement('div');
         extracted.className = 'extracted-color';
-        extracted.style.backgroundColor =
-            `rgb(${color.r}, ${color.g}, ${color.b})`;
+        extracted.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
         /* 조립 */
         wrapper.appendChild(recommend);
@@ -291,9 +290,7 @@ function renderOwnedColors(mode = 'name') {
     let sorted;
 
     if (mode === 'palette') {
-        sorted = [...colorList].sort(
-            (a, b) => rgbToHue(a.rgb) - rgbToHue(b.rgb)
-        );
+        sorted = [...colorList].sort(sortByRGB);
     } else {
         sorted = [...colorList].sort(compareColorName);
     }
@@ -330,7 +327,6 @@ function renderOwnedColors(mode = 'name') {
         rowDiv.appendChild(item);
     });
 }
-
 
 /* =====================================
    5. 가장 가까운 보유 색상 찾기
@@ -380,12 +376,14 @@ function hexToRgb(hex) {
     return {
         r: (v >> 16) & 255,
         g: (v >> 8) & 255,
-        b: v & 255
+        b: v & 255,
     };
 }
 
 function rgbToHue({ r, g, b }) {
-    r /= 255; g /= 255; b /= 255;
+    r /= 255;
+    g /= 255;
+    b /= 255;
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
     const d = max - min;
@@ -409,3 +407,12 @@ function getTextColor(rgb) {
     return brightness > 150 ? '#000' : '#fff';
 }
 
+function sortByRGB(a, b) {
+    if (a.rgb.r !== b.rgb.r) {
+        return a.rgb.r - b.rgb.r;
+    }
+    if (a.rgb.g !== b.rgb.g) {
+        return a.rgb.g - b.rgb.g;
+    }
+    return a.rgb.b - b.rgb.b;
+}
