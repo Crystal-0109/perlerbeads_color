@@ -282,6 +282,9 @@ function renderOwnedColors(mode = 'name') {
         item.className = 'owned-color-item';
         item.style.backgroundColor = c.hex;
 
+        // [추가됨] 나중에 색상을 찾기 위해 데이터 속성 추가
+        item.dataset.name = c.name;
+
         const label = document.createElement('div');
         label.className = 'owned-color-label';
         label.innerText = c.name;
@@ -292,9 +295,7 @@ function renderOwnedColors(mode = 'name') {
     });
 }
 
-/* ==========================================================================
-   [수정] 화면 렌더링 함수 - 추출된 색상 매칭 결과 표시
-========================================================================== */
+// [수정] 화면 렌더링 함수 - 추출된 색상 매칭 결과 표시
 function renderExtractedColors(colors) {
     const container = document.getElementById('extractedColors');
     container.innerHTML = '';
@@ -302,26 +303,30 @@ function renderExtractedColors(colors) {
     // [핵심] 1:1 중복 없는 전체 매칭 실행
     const matchedResults = matchColorsGlobally(colors);
 
-    // 1. [추가] 정렬을 위해 추출된 색상과 매칭된 결과를 하나의 객체로 묶음
+    // 1. 정렬을 위해 추출된 색상과 매칭된 결과를 하나의 객체로 묶음
     const combinedList = colors.map((color, index) => ({
         extracted: color,
         recommended: matchedResults[index],
     }));
 
-    // 2. [추가] 추천된 색상의 이름순(A1, A2...)으로 정렬
-    // compareColorName 함수는 파일 상단에 이미 정의되어 있습니다.
+    // 2. 추천된 색상의 이름순 정렬
     combinedList.sort((a, b) => {
         if (!a.recommended && !b.recommended) return 0;
-        if (!a.recommended) return 1; // 매칭 실패한 건 뒤로
+        if (!a.recommended) return 1;
         if (!b.recommended) return -1;
-
         return compareColorName(a.recommended, b.recommended);
     });
 
-    // 3. 정렬된 리스트를 순회하며 렌더링
+    // 3. 렌더링 및 하이라이트 준비
+
+    // [추가됨] 기존 하이라이트 초기화 (이전 결과 지우기)
+    document.querySelectorAll('.owned-color-item').forEach((el) => {
+        el.classList.remove('highlight');
+    });
+
     combinedList.forEach((item) => {
         const bestMatch = item.recommended;
-        const color = item.extracted; // (정렬된 순서에 맞는) 원본 추출 색상
+        const color = item.extracted;
 
         const wrapper = document.createElement('div');
         wrapper.className = 'compare-item';
@@ -337,9 +342,17 @@ function renderExtractedColors(colors) {
             recommendLabel.innerText = bestMatch.name;
             recommendLabel.style.color = getTextColor(bestMatch.rgb);
             recommend.appendChild(recommendLabel);
+
+            // [추가됨] 보유 색상 리스트에서 해당 색상을 찾아 하이라이트 적용
+            const targetItem = document.querySelector(
+                `.owned-color-item[data-name="${bestMatch.name}"]`
+            );
+            if (targetItem) {
+                targetItem.classList.add('highlight');
+            }
         } else {
             recommend.style.backgroundColor = '#ccc';
-            recommend.innerText = 'X'; // 매칭 실패
+            recommend.innerText = 'X';
         }
 
         // 2. 원본 추출 색상
@@ -352,7 +365,6 @@ function renderExtractedColors(colors) {
         container.appendChild(wrapper);
     });
 }
-
 /* ==========================================================================
    4. 핵심 알고리즘: 1:1 매칭 & 색조 보정
 ========================================================================== */
